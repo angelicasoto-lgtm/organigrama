@@ -12,46 +12,53 @@
       min-height: 100vh;
       color: #333333;
       font-family: 'Segoe UI', Arial, sans-serif;
-      padding: 30px 20px 100px 20px;
+      padding: 25px 15px;
       box-sizing: border-box;
+      overflow-x: auto; /* Permite scroll limpio si el frame es críticamente pequeño */
     }
 
-    /* --- LOGO CORPORATIVO (Esquina Superior Derecha) --- */
+    /* --- LOGO CORPORATIVO (Optimizado para frames de SharePoint) --- */
     .logo-corporativo {
       position: absolute;
-      top: 25px;
-      left: 35px;
-      right: auto;
-      width: 110px; /* Tamaño ideal y elegante */
+      top: 20px;
+      left: 25px;
+      width: 95px;
       height: auto;
       z-index: 1000;
-      filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.3)); /* Sombra ligera para contraste */
-      transition: opacity 0.3s ease;
-    }
-    .logo-corporativo:hover {
-      opacity: 0.8;
+      filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.4));
     }
 
     .header-title {
       text-align: center;
       color: #ffffff;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
-      letter-spacing: 3px;
-      margin-bottom: 5px;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
       text-transform: uppercase;
+      margin-top: 10px;
     }
 
     .header-date {
       text-align: center;
       color: #b0b5bc;
-      font-size: 13px;
-      margin-bottom: 35px;
+      font-size: 12px;
+      margin-bottom: 30px;
     }
 
-    /* --- CONTENEDOR CENTRAL --- */
+    /* --- CONTENEDOR DE PROTECCIÓN PARA SHAREPOINT --- 
+       Evita que el contenido se salga o rompa las proporciones del iFrame */
+    .sharepoint-container {
+      width: 100%;
+      overflow-x: auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* --- CONTENEDOR CENTRAL ADAPTABLE --- */
     .organigrama-wrapper {
-      max-width: 100%;
+      width: 100%;
+      min-width: 980px; /* Asegura que la estructura base no se colapse */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -59,21 +66,20 @@
       position: relative;
     }
 
-    /* --- DISEÑO DE LAS TARJETAS CÁPSULA --- */
+    /* --- DISEÑO DE LAS TARJETAS CÁPSULA (Ajustadas para optimizar espacio) --- */
     .puesto-card { 
       position: relative; 
       background: #ffffff; 
       color: #000000; 
-      padding: 12px 15px; 
+      padding: 10px 12px; 
       border-radius: 50px; 
-      width: 185px; 
+      width: 175px; /* Reducido ligeramente de 185px a 175px para ganar margen */
       text-align: center; 
       box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
       box-sizing: border-box;
       transition: all 0.3s ease;
     }
 
-    /* Control de capas para que los popups floten sobre todo */
     .puesto-card:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(0,0,0,0.6);
@@ -82,7 +88,7 @@
 
     .puesto-nombre { 
       font-weight: 700; 
-      font-size: 12.5px; 
+      font-size: 12px; 
       color: #111111;
       white-space: nowrap;
       overflow: hidden;
@@ -90,7 +96,7 @@
     }
 
     .puesto-titulo { 
-      font-size: 9px; 
+      font-size: 8.5px; 
       color: #666666; 
       margin-top: 2px; 
       text-transform: uppercase;
@@ -98,7 +104,7 @@
       letter-spacing: 0.3px;
     }
 
-    /* --- POPUP DE ACTIVIDADES ESTÁNDAR (FLOTANTE A LA DERECHA) --- */
+    /* --- POPUP DE ACTIVIDADES (FLOTANTE A LA DERECHA) --- */
     .actividades-popup { 
       display: none; 
       position: absolute; 
@@ -109,7 +115,7 @@
       color: #ffffff; 
       padding: 14px; 
       border-radius: 10px; 
-      width: 250px; 
+      width: 240px; 
       text-align: left; 
       box-shadow: 0 10px 30px rgba(0,0,0,0.7); 
       border: 1px solid #333a48;
@@ -127,13 +133,12 @@
       border-color: transparent #191c22 transparent transparent; 
     }
 
-    /* --- POPUP INVERTIDO PARA EL EXTREMO DERECHO (FLOTANTE A LA IZQUIERDA) --- */
+    /* POPUP INVERTIDO PARA LAS ÚLTIMAS COLUMNAS --- */
     .popup-izquierdo {
       left: auto !important;
       right: 105% !important;
     }
 
-    /* Ajuste de la flecha indicadora para el popup izquierdo */
     .popup-izquierdo::after {
       right: auto !important;
       left: 100% !important;
@@ -142,7 +147,7 @@
 
     .actividades-popup h4 { 
       margin: 0 0 6px 0; 
-      font-size: 11.5px; 
+      font-size: 11px; 
       color: #0078d4; 
       border-bottom: 1px solid #2a313e; 
       padding-bottom: 4px; 
@@ -152,7 +157,7 @@
     .actividades-popup ul { 
       margin: 0; 
       padding-left: 14px; 
-      font-size: 11px; 
+      font-size: 10.5px; 
       line-height: 1.5; 
       color: #e0e0e0;
     }
@@ -161,13 +166,12 @@
       display: block; 
     }
 
-    /* --- CONEXIONES SEGURAS Y FLEXIBLES --- */
+    /* --- CONEXIONES CORE --- */
     .nivel-director-general {
-      margin-bottom: 50px;
+      margin-bottom: 45px;
       position: relative;
     }
 
-    /* Línea que baja del Director General */
     .nivel-director-general::after {
       content: '';
       position: absolute;
@@ -179,23 +183,21 @@
       background: #ffffff;
     }
 
-    /* Contenedor flexible adaptativo */
+    /* MATRIZ DE 5 COLUMNAS ADAPTABLE CON GAP FLEXIBLE */
     .grid-organigrama {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px; /* Reducido ligeramente de 16px a 12px para optimizar compresión */
       width: 100%;
       position: relative;
     }
 
-    /* Línea horizontal adaptativa */
     .grid-organigrama::before {
       content: '';
       position: absolute;
       top: -25px;
-      left: 5%;  
-      right: 5%; 
+      left: calc(175px / 2); 
+      right: calc(175px / 2); 
       height: 2px;
       background: #ffffff;
     }
@@ -207,7 +209,6 @@
       position: relative;
     }
 
-    /* Línea de conexión para cada bloque */
     .columna-area::before {
       content: '';
       position: absolute;
@@ -217,201 +218,236 @@
       background: #ffffff;
     }
 
-    /* Bloques de equipo verticales hacia abajo */
     .bloque-subordinados-vertical {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
       margin-top: 25px;
       position: relative;
       width: 100%;
       align-items: center;
     }
 
-    /* Líneas secundarias para los flujos internos */
     .bloque-subordinados-vertical::before {
       content: '';
       position: absolute;
       top: -25px;
-      bottom: 22px;
+      bottom: 20px;
       width: 2px;
       background: rgba(255, 255, 255, 0.4);
       z-index: 1;
+    }
+
+    /* --- FILA INFERIOR MÁS COMPACTA --- */
+    .fila-inferior-staff {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 35px;
+      position: relative;
+      width: 100%;
+    }
+
+    .card-staff-bajo {
+      position: relative;
+    }
+
+    /* --- RESPONSIVIDAD AUTOMÁTICA EN BASE AL TAMAÑO DEL FRAME --- */
+    @media (max-width: 1080px) {
+      .organigrama-wrapper {
+        transform: scale(0.9); /* Reduce un 10% el tamaño general si el frame mide menos de 1080px */
+        transform-origin: top center;
+      }
+    }
+
+    @media (max-width: 950px) {
+      .organigrama-wrapper {
+        transform: scale(0.8); /* Reduce un 20% si el frame es aún más chico */
+        transform-origin: top center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- ELEMENTO DEL LOGO ENRAIZADO -->
   <img src="logo.png" alt="Logo Klomtor" class="logo-corporativo">
 
-  <div class="organigrama-wrapper">
-    <div class="header-title">Organigrama</div>
-    <div class="header-date">Febrero 2026</div>
+  <div class="sharepoint-container">
+    
+    <div class="organigrama-wrapper">
+      <div class="header-title">Organigrama</div>
+      <div class="header-date">Febrero 2026</div>
 
-    <div class="nivel-director-general">
-      <div class="puesto-card" style="border: 1px solid #0078d4; background: #fcfcfc; z-index: 20;">
-        <div class="puesto-nombre" style="color: #0078d4;">Carlos Cabañas</div>
-        <div class="puesto-titulo" style="color: #444444;">Director</div>
-        <div class="actividades-popup">
-          <h4>Alta Dirección:</h4>
-          <ul>
-            <li>Liderazgo estratégico corporativo de Klomtor Solutions.</li>
-            <li>Planificación financiera global y decisiones comerciales LATAM.</li>
-          </ul>
+      <div class="nivel-director-general">
+        <div class="puesto-card" style="border: 1px solid #0078d4; background: #fcfcfc; z-index: 20;">
+          <div class="puesto-nombre" style="color: #0078d4;">Carlos Cabañas</div>
+          <div class="puesto-titulo" style="color: #444444;">Director</div>
+          <div class="actividades-popup">
+            <h4>Alta Dirección:</h4>
+            <ul>
+              <li>Liderazgo estratégico corporativo de Klomtor Solutions.</li>
+              <li>Planificación financiera global y decisiones comerciales LATAM.</li>
+            </ul>
+          </div>
         </div>
       </div>
+
+      <div class="grid-organigrama">
+
+        <div class="columna-area">
+          <div class="puesto-card" style="z-index: 15;">
+            <div class="puesto-nombre">Víctor Calderón</div>
+            <div class="puesto-titulo">Development Director</div>
+            <div class="actividades-popup">
+              <h4>Liderazgo de Ingeniería:</h4>
+              <ul>
+                <li>Dirección técnica de células ágiles de desarrollo.</li>
+                <li>Aseguramiento y liberación de sprints core.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bloque-subordinados-vertical">
+            <div class="puesto-card" style="z-index: 14;">
+              <div class="puesto-nombre">Jennifer Becerra</div><div class="puesto-titulo">Development Specialist</div>
+              <div class="actividades-popup"><h4>Funciones Técnicas:</h4><ul><li>Desarrollo backend y optimización de servicios core.</li><li>Pruebas unitarias e integración de webhooks.</li></ul></div>
+            </div>
+            <div class="puesto-card" style="z-index: 13;">
+              <div class="puesto-nombre">Graciela Soto</div><div class="puesto-titulo">Development Specialist</div>
+              <div class="actividades-popup"><h4>Funciones Técnicas:</h4><ul><li>Ingeniería de software enfocada en plataformas modulares.</li><li>Maquetación de flujos de datos e integraciones cloud.</li></ul></div>
+            </div>
+            <div class="puesto-card" style="z-index: 12;">
+              <div class="puesto-nombre">Axel Torres</div><div class="puesto-titulo">Development Specialist</div>
+              <div class="actividades-popup"><h4>Funciones Técnicas:</h4><ul><li>Resolución de bugs estructurales y soporte a código vivo.</li><li>Desarrollo de lógica frontend y consumo de API.</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columna-area">
+          <div class="puesto-card" style="z-index: 15;">
+            <div class="puesto-nombre">José Macedo</div>
+            <div class="puesto-titulo">Infrastructure Manager</div>
+            <div class="actividades-popup">
+              <h4>Sistemas Globales:</h4>
+              <ul>
+                <li>Arquitectura de servidores en la nube y balanceo de cargas.</li>
+                <li>Políticas de ciberseguridad corporativa en LATAM.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bloque-subordinados-vertical">
+            <div class="puesto-card" style="z-index: 14;">
+              <div class="puesto-nombre">Juan Pablo Galicia</div><div class="puesto-titulo">IT Manager Mexico</div>
+              <div class="actividades-popup"><h4>Sistemas Locales:</h4><ul><li>Mantenimiento crítico de la red de datos interna.</li><li>Gestión de accesos y administración de infraestructura.</li></ul></div>
+            </div>
+            <div class="puesto-card" style="z-index: 13;">
+              <div class="puesto-nombre">René de Lima</div><div class="puesto-titulo">Help Desk Manager MX</div>
+              <div class="actividades-popup"><h4>Gestión de Soporte:</h4><ul><li>Liderazgo del equipo de atención de incidencias en México.</li><li>Monitoreo de SLA de respuestas operativas técnicas.</li></ul></div>
+            </div>
+            <div class="puesto-card" style="z-index: 12;">
+              <div class="puesto-nombre">Erick Muñoz</div><div class="puesto-titulo">Support Specialist</div>
+              <div class="actividades-popup"><h4>Soporte Técnico:</h4><ul><li>Atención directa en sitio a fallas de primer nivel.</li><li>Configuración preventiva de equipos de cómputo.</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columna-area">
+          <div class="puesto-card" style="border: 1px solid #107c41; z-index: 15;">
+            <div class="puesto-nombre">Angélica Soto</div>
+            <div class="puesto-titulo">Quality Manager Mexico</div>
+            <div class="actividades-popup">
+              <h4>Aseguramiento de Calidad:</h4>
+              <ul>
+                <li>Control de calidad en implementaciones operativas.</li>
+                <li>Seguimiento analítico de incidencias y entregables técnicos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="columna-area">
+          <div class="puesto-card" style="z-index: 15;">
+            <div class="puesto-nombre">Galileo Ramírez</div>
+            <div class="puesto-titulo">POS Director LATAM</div>
+            <div class="actividades-popup popup-izquierdo">
+              <h4>Dirección Comercial:</h4>
+              <ul>
+                <li>Estrategia y expansión de soluciones de Punto de Venta.</li>
+                <li>Cumplimiento de objetivos comerciales regionales.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bloque-subordinados-vertical">
+            <div class="puesto-card" style="z-index: 14;">
+              <div class="puesto-nombre">Roberto Soledad</div><div class="puesto-titulo">POS Product Manager</div>
+              <div class="actividades-popup popup-izquierdo"><h4>Estrategia de Producto:</h4><ul><li>Ciclo de vida de soluciones POS y mapeo de mejoras.</li><li>Coordinación de requerimientos comerciales con ingeniería.</li></ul></div>
+            </div>
+            <div class="puesto-card" style="z-index: 13;">
+              <div class="puesto-nombre">Liliana Ramírez</div><div class="puesto-titulo">Help Desk Manager RD</div>
+              <div class="actividades-popup popup-izquierdo"><h4>Soporte Técnico RD:</h4><ul><li>Supervisión de mesa de ayuda en República Dominicana.</li><li>Coordinación de flujos de soporte técnico local.</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="columna-area">
+          <div class="puesto-card" style="z-index: 15;">
+            <div class="puesto-nombre">David Calvario</div>
+            <div class="puesto-titulo">Hospitality Director</div>
+            <div class="actividades-popup popup-izquierdo">
+              <h4>Estrategia Comercial:</h4>
+              <ul>
+                <li>Liderazgo del portafolio Hospitality a nivel regional.</li>
+                <li>Relaciones estratégicas con cuentas hoteleras clave.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bloque-subordinados-vertical">
+            <div class="puesto-card" style="z-index: 14;">
+              <div class="puesto-nombre">Miguel Muñoz</div><div class="puesto-titulo">Hospitality Product Mgr</div>
+              <div class="actividades-popup popup-izquierdo"><h4>Gestión de Producto:</h4><ul><li>Administración de hojas de ruta de integraciones PMS.</li><li>Pruebas de aceptación y flujos operativos del negocio.</li></ul></div>
+            </div>
+            <div class="puesto-card" style="z-index: 13;">
+              <div class="puesto-nombre">Uriel Hernández</div><div class="puesto-titulo">Development Specialist</div>
+              <div class="actividades-popup popup-izquierdo"><h4>Desarrollo PMS:</h4><ul><li>Programación especializada en sistemas hoteleros.</li><li>Despliegue y entrenamiento de software PMS en vivo.</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="fila-inferior-staff">
+        
+        <div class="card-staff-bajo">
+          <div class="puesto-card" style="border: 1px solid #7a8288; z-index: 15;">
+            <div class="puesto-nombre">Francisco Morales</div>
+            <div class="puesto-titulo">Database Manager</div>
+            <div class="actividades-popup popup-izquierdo">
+              <h4>Gestión de Información:</h4>
+              <ul>
+                <li>Mantenimiento analítico preventivo de bases de datos.</li>
+                <li>Estrategias de respaldo automático y replicación core.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-staff-bajo">
+          <div class="puesto-card" style="border: 1px solid #7a8288; z-index: 15;">
+            <div class="puesto-nombre">Rocío López</div>
+            <div class="puesto-titulo">Cobranza</div>
+            <div class="actividades-popup popup-izquierdo">
+              <h4>Finanzas Operativas:</h4>
+              <ul>
+                <li>Control analítico y conciliación de cartera vencida.</li>
+                <li>Seguimiento de cobros comerciales y flujos de caja.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="grid-organigrama">
-
-      <div class="columna-area">
-        <div class="puesto-card" style="z-index: 15;">
-          <div class="puesto-nombre">Víctor Calderón</div>
-          <div class="puesto-titulo">Development Director</div>
-          <div class="actividades-popup">
-            <h4>Liderazgo de Ingeniería:</h4>
-            <ul>
-              <li>Dirección técnica de células ágiles de desarrollo.</li>
-              <li>Aseguramiento y liberación de sprints core.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bloque-subordinados-vertical">
-          <div class="puesto-card" style="z-index: 14;">
-            <div class="puesto-nombre">Jennifer Becerra</div><div class="puesto-titulo">Development Specialist</div>
-            <div class="actividades-popup"><h4>Funciones Técnicas:</h4><ul><li>Desarrollo backend y optimización de servicios core.</li><li>Pruebas unitarias e integración de webhooks.</li></ul></div>
-          </div>
-          <div class="puesto-card" style="z-index: 13;">
-            <div class="puesto-nombre">Graciela Soto</div><div class="puesto-titulo">Development Specialist</div>
-            <div class="actividades-popup"><h4>Funciones Técnicas:</h4><ul><li>Ingeniería de software enfocada en plataformas modulares.</li><li>Maquetación de flujos de datos e integraciones cloud.</li></ul></div>
-          </div>
-          <div class="puesto-card" style="z-index: 12;">
-            <div class="puesto-nombre">Axel Torres</div><div class="puesto-titulo">Development Specialist</div>
-            <div class="actividades-popup"><h4>Funciones Técnicas:</h4><ul><li>Resolución de bugs estructurales y soporte a código vivo.</li><li>Desarrollo de lógica frontend y consumo de API.</li></ul></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna-area">
-        <div class="puesto-card" style="z-index: 15;">
-          <div class="puesto-nombre">José Macedo</div>
-          <div class="puesto-titulo">Infrastructure Manager</div>
-          <div class="actividades-popup">
-            <h4>Sistemas Globales:</h4>
-            <ul>
-              <li>Arquitectura de servidores en la nube y balanceo de cargas.</li>
-              <li>Políticas de ciberseguridad corporativa en LATAM.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bloque-subordinados-vertical">
-          <div class="puesto-card" style="z-index: 14;">
-            <div class="puesto-nombre">Juan Pablo Galicia</div><div class="puesto-titulo">IT Manager Mexico</div>
-            <div class="actividades-popup"><h4>Sistemas Locales:</h4><ul><li>Mantenimiento crítico de la red de datos interna.</li><li>Gestión de accesos y administración de infraestructura.</li></ul></div>
-          </div>
-          <div class="puesto-card" style="z-index: 13;">
-            <div class="puesto-nombre">René de Lima</div><div class="puesto-titulo">Help Desk Manager MX</div>
-            <div class="actividades-popup"><h4>Gestión de Soporte:</h4><ul><li>Liderazgo del equipo de atención de incidencias en México.</li><li>Monitoreo de SLA de respuestas operativas técnicas.</li></ul></div>
-          </div>
-          <div class="puesto-card" style="z-index: 12;">
-            <div class="puesto-nombre">Erick Muñoz</div><div class="puesto-titulo">Support Specialist</div>
-            <div class="actividades-popup"><h4>Soporte Técnico:</h4><ul><li>Atención directa en sitio a fallas de primer nivel.</li><li>Configuración preventiva de equipos de cómputo.</li></ul></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna-area">
-        <div class="puesto-card" style="border: 1px solid #107c41; z-index: 15;">
-          <div class="puesto-nombre">Angélica Soto</div>
-          <div class="puesto-titulo">Quality Manager Mexico</div>
-          <div class="actividades-popup">
-            <h4>Aseguramiento de Calidad:</h4>
-            <ul>
-              <li>Control de calidad en implementaciones operativas.</li>
-              <li>Seguimiento analítico de incidencias y entregables técnicos.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna-area">
-        <div class="puesto-card" style="z-index: 15;">
-          <div class="puesto-nombre">Galileo Ramírez</div>
-          <div class="puesto-titulo">POS Director LATAM</div>
-          <div class="actividades-popup">
-            <h4>Dirección Comercial:</h4>
-            <ul>
-              <li>Estrategia y expansión de soluciones de Punto de Venta.</li>
-              <li>Cumplimiento de objetivos comerciales regionales.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bloque-subordinados-vertical">
-          <div class="puesto-card" style="z-index: 14;">
-            <div class="puesto-nombre">Roberto Soledad</div><div class="puesto-titulo">POS Product Manager</div>
-            <div class="actividades-popup"><h4>Estrategia de Producto:</h4><ul><li>Ciclo de vida de soluciones POS y mapeo de mejoras.</li><li>Coordinación de requerimientos comerciales con ingeniería.</li></ul></div>
-          </div>
-          <div class="puesto-card" style="z-index: 13;">
-            <div class="puesto-nombre">Liliana Ramírez</div><div class="puesto-titulo">Help Desk Manager RD</div>
-            <div class="actividades-popup"><h4>Soporte Técnico RD:</h4><ul><li>Supervisión de mesa de ayuda en República Dominicana.</li><li>Coordinación de flujos de soporte técnico local.</li></ul></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna-area">
-        <div class="puesto-card" style="z-index: 15;">
-          <div class="puesto-nombre">David Calvario</div>
-          <div class="puesto-titulo">Hospitality Director</div>
-          <div class="actividades-popup">
-            <h4>Estrategia Comercial:</h4>
-            <ul>
-              <li>Liderazgo del portafolio Hospitality a nivel regional.</li>
-              <li>Relaciones estratégicas con cuentas hoteleras clave.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="bloque-subordinados-vertical">
-          <div class="puesto-card" style="z-index: 14;">
-            <div class="puesto-nombre">Miguel Muñoz</div><div class="puesto-titulo">Hospitality Product Mgr</div>
-            <div class="actividades-popup"><h4>Gestión de Producto:</h4><ul><li>Administración de hojas de ruta de integraciones PMS.</li><li>Pruebas de aceptación y flujos operativos del negocio.</li></ul></div>
-          </div>
-          <div class="puesto-card" style="z-index: 13;">
-            <div class="puesto-nombre">Uriel Hernández</div><div class="puesto-titulo">Development Specialist</div>
-            <div class="actividades-popup"><h4>Desarrollo PMS:</h4><ul><li>Programación especializada en sistemas hoteleros.</li><li>Despliegue y entrenamiento de software PMS en vivo.</li></ul></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna-area">
-        <div class="puesto-card" style="border: 1px solid #7a8288; z-index: 15;">
-          <div class="puesto-nombre">Francisco Morales</div>
-          <div class="puesto-titulo">Database Manager</div>
-          <div class="actividades-popup popup-izquierdo">
-            <h4>Gestión de Información:</h4>
-            <ul>
-              <li>Mantenimiento analítico preventivo de bases de datos.</li>
-              <li>Estrategias de respaldo automático y replicación core.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="columna-area">
-        <div class="puesto-card" style="border: 1px solid #7a8288; z-index: 15;">
-          <div class="puesto-nombre">Rocío López</div>
-          <div class="puesto-titulo">Cobranza</div>
-          <div class="actividades-popup popup-izquierdo">
-            <h4>Finanzas Operativas:</h4>
-            <ul>
-              <li>Control analítico y conciliación de cartera vencida.</li>
-              <li>Seguimiento de cobros comerciales y flujos de caja.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
   </div>
 
 </body>
