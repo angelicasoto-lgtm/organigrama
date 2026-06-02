@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organigrama Interactivo Klomtoria</title>
+  <style>
+    body { 
+      margin: 0; 
+      background-color: #f3f2f1; 
+      overflow-x: auto;
+    }
+    .organigrama-container { 
+      font-family: 'Segoe UI', sans-serif; 
+      display: flex; 
+      justify-content: center; 
+      padding: 30px 20px 150px 20px; 
+    }
+    .puesto-card { 
+      position: relative; 
+      background: #ffffff; 
+      color: #323130; 
+      border: 1px solid #e1dfdd; 
+      border-top: 4px solid #0078d4; 
+      padding: 12px 20px; 
+      border-radius: 4px; 
+      width: 180px; 
+      text-align: center; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
+      display: inline-block; 
+      cursor: pointer; 
+      transition: all 0.2s ease;
+    }
+    .puesto-card:hover {
+      border-top-color: #106ebe;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .puesto-titulo { 
+      font-weight: 600; 
+      font-size: 14px; 
+      color: #0078d4; 
+    }
+    .puesto-nombre { 
+      font-size: 12px; 
+      color: #605e5c; 
+      margin-top: 4px; 
+    }
+    .actividades-popup { 
+      display: none; 
+      position: absolute; 
+      top: 105%; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      background: #201f1e; 
+      color: #ffffff; 
+      padding: 14px; 
+      border-radius: 6px; 
+      width: 240px; 
+      text-align: left; 
+      z-index: 999; 
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+    }
+    .actividades-popup::after { 
+      content: ''; 
+      position: absolute; 
+      bottom: 100%; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      border-width: 6px; 
+      border-style: solid; 
+      border-color: transparent transparent #201f1e transparent; 
+    }
+    .actividades-popup h4 { 
+      margin: 0 0 8px 0; 
+      font-size: 13px; 
+      color: #f3f2f1; 
+      border-bottom: 1px solid #3b3a39; 
+      padding-bottom: 4px; 
+    }
+    .actividades-popup ul { 
+      margin: 0; 
+      padding-left: 16px; 
+      font-size: 12px; 
+      line-height: 1.5; 
+    }
+    .puesto-card:hover .actividades-popup { 
+      display: block; 
+    }
+    
+    /* Conectores del árbol */
+    .tree ul { padding-top: 20px; position: relative; display: flex; justify-content: center; }
+    .tree li { float: left; text-align: center; list-style-type: none; position: relative; padding: 20px 10px 0 10px; }
+    .tree li::before, .tree li::after { content: ''; position: absolute; top: 0; right: 50%; border-top: 1px solid #a19f9d; width: 50%; height: 20px; }
+    .tree li::after { right: auto; left: 50%; border-left: 1px solid #a19f9d; }
+    .tree li:only-child::after, .tree li:only-child::before { display: none; }
+    .tree li:only-child { padding-top: 0; }
+    .tree li:first-child::before, .tree li:last-child::after { border: 0 none; }
+    .tree li:last-child::before { border-right: 1px solid #a19f9d; border-radius: 0 5px 0 0; }
+    .tree li:first-child::after { border-radius: 5px 0 0 0; }
+    .tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 1px solid #a19f9d; width: 0; height: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="organigrama-container">
+    <ul class="tree">
+      <li>
+        <div class="puesto-card">
+          <div class="puesto-titulo">Dirección General</div>
+          <div class="puesto-nombre">Alejandro Gómez</div>
+          <div class="actividades-popup">
+            <h4>Actividades Principales:</h4>
+            <ul>
+              <li>Definir la estrategia de crecimiento anual.</li>
+              <li>Aprobar presupuestos globales.</li>
+              <li>Representación legal y comercial de la empresa.</li>
+            </ul>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <div class="puesto-card">
+              <div class="puesto-titulo">Gerencia de Finanzas</div>
+              <div class="puesto-nombre">Beatriz Ruiz</div>
+              <div class="actividades-popup">
+                <h4>Actividades Principales:</h4>
+                <ul>
+                  <li>Gestión de flujo de caja y auditorías.</li>
+                  <li>Presentación de reportes fiscales.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="puesto-card">
+              <div class="puesto-titulo">Gerencia de Tecnología</div>
+              <div class="puesto-nombre">Carlos Marín</div>
+              <div class="actividades-popup">
+                <h4>Actividades Principales:</h4>
+                <ul>
+                  <li>Mantenimiento de la infraestructura TI.</li>
+                  <li>Administración del SharePoint interno.</li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
